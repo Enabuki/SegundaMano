@@ -5,7 +5,7 @@ function App() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState('home')
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedProduct, setSelectedProduct] = useState(null)
 
   const toggleMobileNav = () => {
     setMobileNavOpen(!mobileNavOpen)
@@ -17,23 +17,22 @@ function App() {
 
   const navigateTo = (page) => {
     setCurrentPage(page)
+    setSelectedProduct(null)
     closeMobileNav()
   }
 
-  const openImageModal = (imageSrc, productName) => {
-    setSelectedImage({ src: imageSrc, name: productName })
+  const viewProduct = (product) => {
+    setSelectedProduct(product)
+    setCurrentPage('product')
   }
 
-  const closeImageModal = () => {
-    setSelectedImage(null)
-  }
 
   return (
     <>
       <header className="site-header">
         <div className="container header-grid">
           <div className="brand">
-            <span className="brand__mark"></span>
+            <img src="/logo.png" alt="Segunda Mana Logo" className="brand__logo"/>
             <span className="brand__text">Segunda<br/>Mana</span>
           </div>
           <nav className={`main-nav ${mobileNavOpen ? 'active' : ''}`}>
@@ -198,18 +197,9 @@ function App() {
                   {/* Product cards with clickable images */}
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -221,18 +211,9 @@ function App() {
 
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -244,18 +225,9 @@ function App() {
 
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -267,18 +239,9 @@ function App() {
 
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -290,18 +253,9 @@ function App() {
 
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -313,18 +267,9 @@ function App() {
 
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -336,18 +281,9 @@ function App() {
 
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -359,18 +295,9 @@ function App() {
 
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -382,18 +309,9 @@ function App() {
 
                   <article className="p-card">
                     <a href="#" className="p-add" onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>Add to cart</a>
-                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); alert('Viewing product details'); }}>
+                    <a href="#" className="p-link" onClick={(e) => { e.preventDefault(); viewProduct({ name: 'Half Zip Sweater', variant: 'Navy Blue', price: '₱200.00', image: 'https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop' }); }}>
                       <figure className="p-thumb">
-                        <img 
-                          src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" 
-                          alt="Half Zip Sweater"
-                          onClick={(e) => { 
-                            e.preventDefault(); 
-                            e.stopPropagation(); 
-                            openImageModal(e.target.src, 'Half Zip Sweater - Navy Blue'); 
-                          }}
-                          style={{ cursor: 'pointer' }}
-                        />
+                        <img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/>
                       </figure>
                       <div className="p-info">
                         <div className="p-name">Half Zip Sweater</div>
@@ -405,6 +323,45 @@ function App() {
                 </div>
               </section>
             </div>
+          </main>
+        )}
+
+        {/* Product Details Page */}
+        {currentPage === 'product' && selectedProduct && (
+          <main className="pd-wrap">
+            {/* gallery thumbs */}
+            <aside className="pd-thumbs">
+              <img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" alt="thumb"/>
+              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" alt="thumb"/>
+              <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" alt="thumb"/>
+            </aside>
+
+            {/* main image */}
+            <section className="pd-main">
+              <img src={selectedProduct.image} alt={selectedProduct.name}/>
+            </section>
+
+            {/* info */}
+            <section className="pd-info">
+              <h1>{selectedProduct.name}</h1>
+              <p className="pd-desc">A classic layering piece with a modern twist. This half‑zip sweater features a timeless striped design, soft knit fabric, and a versatile zip‑up collar for adjustable comfort. Finished with ribbed cuffs and hem for a snug fit, it's perfect for both casual days and smart‑casual looks.</p>
+              <div className="pd-price">{selectedProduct.price}</div>
+
+              <div className="pd-field">
+                <label>Measurements</label>
+                <select className="pd-select">
+                  <option>Small</option>
+                  <option>Medium</option>
+                  <option>Large</option>
+                </select>
+              </div>
+
+              <button className="pd-btn" onClick={() => alert('Added to cart!')}>Add to Cart</button>
+
+              <div className="pd-meta">
+                <div><strong>Category</strong>: Clothing</div>
+              </div>
+            </section>
           </main>
         )}
 
@@ -553,18 +510,6 @@ function App() {
 
       <footer className="footer">© 2025 Segunda Mana. Shop with purpose.</footer>
 
-      {/* Image Modal */}
-      {selectedImage && (
-        <div className="image-modal-overlay" onClick={closeImageModal}>
-          <div className="image-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="image-modal-close" onClick={closeImageModal}>✕</button>
-            <img src={selectedImage.src} alt={selectedImage.name} className="image-modal-img" />
-            <div className="image-modal-info">
-              <h3>{selectedImage.name}</h3>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   )
 }

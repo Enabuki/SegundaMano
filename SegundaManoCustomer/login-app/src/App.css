@@ -11,7 +11,7 @@ body{overflow-x:hidden}
 .site-header{border-bottom:1px solid #eee;background:#fff;position:relative;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
 .header-grid{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:6px 0;min-height:40px;max-width:100%;overflow:hidden;gap:16px}
 .brand{display:flex;align-items:center;gap:8px;margin-left:16px}
-.brand__mark{width:24px;height:24px;background:#d32f2f;border-radius:4px}
+.brand__logo{width:24px;height:24px;object-fit:contain;flex-shrink:0}
 .brand__text{font-size:14px;font-weight:800;color:#111;line-height:1;text-align:left}
 
 /* Responsive spacing for brand text */
@@ -623,124 +623,137 @@ main > .container, .intro.container, .announcement.container, .metrics, section.
   }
 }
 
-/* Image Modal */
-.image-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-  padding: 20px;
-  animation: fadeIn 0.3s ease;
+
+/* PRODUCT DETAILS PAGE */
+.pd-wrap {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 150px 1fr 540px;
+  gap: 28px;
 }
 
-.image-modal {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: zoomIn 0.3s ease;
+.pd-thumbs {
+  display: grid;
+  gap: 8px;
 }
 
-.image-modal-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
-
-.image-modal-close:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-.image-modal-img {
+.pd-thumbs img {
   width: 100%;
-  height: auto;
-  max-height: 70vh;
-  object-fit: contain;
-  display: block;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
 
-.image-modal-info {
-  padding: 20px;
-  text-align: center;
-  background: white;
+.pd-main img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
 }
 
-.image-modal-info h3 {
-  margin: 0;
+.pd-info h1 {
+  font-size: 28px;
+  margin: 0 0 14px;
+}
+
+.pd-desc {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  max-width: 520px;
+}
+
+.pd-price {
+  font-weight: 800;
   font-size: 18px;
+  margin: 12px 0 18px;
+}
+
+.pd-meta {
+  font-size: 12px;
+  color: #888;
+  margin-top: 18px;
+}
+
+.pd-btn {
+  display: inline-block;
+  background: #d62828;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 18px;
   font-weight: 700;
-  color: #111;
+  cursor: pointer;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+.pd-field {
+  margin: 12px 0;
+}
+
+.pd-field label {
+  display: block;
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.pd-select {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  width: 220px;
+}
+
+/* Responsive product details */
+@media (max-width: 1024px) {
+  .pd-wrap {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  to {
-    opacity: 1;
+  
+  .pd-thumbs {
+    grid-template-columns: repeat(3, 1fr);
+    order: 2;
+  }
+  
+  .pd-main {
+    order: 1;
+  }
+  
+  .pd-info {
+    order: 3;
   }
 }
 
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Responsive modal */
 @media (max-width: 768px) {
-  .image-modal {
-    max-width: 95vw;
-    max-height: 95vh;
-    margin: 10px;
+  .pd-wrap {
+    margin: 16px auto;
+    padding: 0 12px;
   }
   
-  .image-modal-img {
-    max-height: 60vh;
+  .pd-thumbs {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
   }
   
-  .image-modal-info {
-    padding: 15px;
+  .pd-thumbs img {
+    height: 100px;
   }
   
-  .image-modal-info h3 {
-    font-size: 16px;
+  .pd-main img {
+    height: 300px;
   }
   
-  .image-modal-close {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
-    top: 10px;
-    right: 10px;
+  .pd-info h1 {
+    font-size: 24px;
+  }
+  
+  .pd-select {
+    width: 100%;
   }
 }
 
