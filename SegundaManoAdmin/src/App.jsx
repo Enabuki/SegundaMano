@@ -17,7 +17,8 @@ function App() {
     if (email.toLowerCase() === ADMIN_EMAIL && password === ADMIN_PWD) {
       sessionStorage.setItem('sg_admin_logged_in', 'true')
       console.log('Login successful')
-      // Redirect to dashboard or handle successful login
+      // Redirect to dashboard.html
+      window.location.href = '/dashboard.html'
     } else {
       setError('Invalid credentials. Try admin@segundamana.com / Admin@123')
     }
@@ -26,6 +27,7 @@ function App() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
+
 
   return (
     <>
