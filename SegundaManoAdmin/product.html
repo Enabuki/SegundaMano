@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segunda Mana Admin - Products</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#f6f7fb; --panel:#ffffff; --text:#0f172a; --muted:#6b7280; --border:#e5e7eb; --brand:#d32f2f; --brand-600:#b91c1c; --green:#10b981; --amber:#f59e0b; --red:#ef4444; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:inherit}
+
+    .layout{display:grid;grid-template-columns:210px 1fr;min-height:100dvh}
+    .sidebar{background:linear-gradient(180deg, #fbf4f4 0%, #f1eef7 50%, #f6ece7 100%);border-right:1px solid var(--border);padding:14px 10px}
+         .brand{display:flex;align-items:center;gap:8px;margin:6px 6px}
+     .logo{width:18px;height:18px;background:var(--brand);border-radius:4px}
+    .brand span{font-weight:800;font-size:14px}
+    .section-title{color:#9aa3b2;font-weight:700;font-size:10px;letter-spacing:.08em;margin:10px 8px 6px;text-transform:uppercase}
+    .nav a{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;color:#111;text-decoration:none;font-size:13px}
+    .nav .ico{width:16px;height:16px;color:#8c94a6}
+    .nav a.active{background:var(--brand);color:#fff}
+    .nav a.active .ico{color:#fff}
+
+         .content{padding:0 24px 24px;display:block;overflow-y:auto;max-height:100vh}
+              .page-title{margin:24px 0 18px}
+     .page-title h1{font-size:28px;font-weight:800;color:var(--text);margin:0}
+
+    .toolbar{display:flex;gap:10px;align-items:center;margin:18px 0}
+    .search{flex:1;display:flex;align-items:center;border:1px solid var(--border);background:#fff;border-radius:10px;padding:0 12px;height:38px}
+    .search input{border:none;outline:none;flex:1;height:100%;font-size:13px}
+    .btn{height:38px;border:1px solid var(--border);background:#fff;border-radius:10px;padding:0 12px;cursor:pointer;font-weight:600;font-size:13px;text-decoration:none;display:inline-flex;align-items:center}
+         .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;display:flex;align-items:center;gap:6px;text-decoration:none}
+    .btn:hover{ text-decoration:none }
+
+    .table{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;min-width:100%;width:100%}
+    .table table{width:100%;border-collapse:collapse;font-size:13px}
+    .table thead th{background:#f9fafb;border-bottom:1px solid var(--border);text-align:left;padding:10px 12px;color:#6b7280;font-weight:700}
+    .table tbody td{padding:12px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+    .prod{display:flex;align-items:center;gap:10px}
+    .prod .img{width:36px;height:36px;border-radius:8px;background:#e5e7eb}
+    .pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:600}
+    .pill.green{background:#dcfce7;color:#166534}
+    .pill.red{background:#fee2e2;color:#991b1b}
+    .actions{display:flex;gap:10px;color:#6b7280}
+    .pagination{display:flex;gap:6px;align-items:center;justify-content:center;margin:12px 0}
+    .page{width:28px;height:28px;border:1px solid var(--border);background:#fff;border-radius:8px;display:grid;place-items:center;font-size:12px;cursor:pointer}
+    .page.active{background:var(--brand);border-color:var(--brand);color:#fff}
+  </style>
+</head>
+<body>
+  <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 12h18M3 6h18M3 18h18"/>
+    </svg>
+  </button>
+  
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><div class="logo" style="background: #d32f2f; width: 18px; height: 18px; border-radius: 4px;"></div><span style="display: flex; flex-direction: column; line-height: 1;"><span>Segunda</span><span>Mana</span></span></div>
+      <nav class="nav">
+        <div class="section-title">GENERAL</div>
+        <a href="dashboard.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg>Dashboard</a>
+        <a class="active" href="product.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18"/><path d="M6 3v4"/><path d="M6 7v14"/><rect x="6" y="11" width="12" height="10" rx="2"/></svg>Product</a>
+        <a href="orders.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8"/><path d="M3 15l3.5-2 3.5 2 3.5-2 3.5 2 3.5-2V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Order Management</a>
+        <a href="beneficiary.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Beneficiary</a>
+        <a href="announcement.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18v16H3z"/><path d="M7 8h10"/><path d="M7 12h6"/></svg>Announcement</a>
+        <div class="section-title">TOOLS</div>
+        <a href="activity.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h6v6H3z"/><path d="M15 5h6v6h-6z"/><path d="M9 13h6v6H9z"/></svg>Activity Log</a>
+        <a href="account-settings.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 3 16.6a1.65 1.65 0 0 0-1.51-1H1a2 2 0 1 1 0-4h.09c.66 0 1.26-.39 1.51-1 .25-.6.11-1.3-.33-1.78"/></svg>Account Settings</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="page-title">
+        <h1>Segunda Mana</h1>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9aa4b2" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input placeholder="Search for id, name product" />
+        </div>
+        <button class="btn">Filter</button>
+        <button class="btn">Export</button>
+        <a class="btn primary" href="add-product.html">+ Add New Product</a>
+      </div>
+
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:36px"></th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Size</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Repeat rows -->
+            <tr>
+              <td><input type="checkbox"/></td>
+              <td>
+                <div class="prod"><div class="img"></div><div>
+                  <div style="font-weight:700;color:#2563eb;font-size:12px;cursor:pointer">00231</div>
+                  <div style="font-size:12px;color:#475569">Albibas Blue</div>
+                </div></div>
+              </td>
+              <td>300</td>
+              <td>40</td>
+              <td>
+                <div style="font-size:12px;color:#334155">August 22, 2025<br/>8:25 PM</div>
+              </td>
+              <td><span class="pill green">Available</span></td>
+              <td class="actions">
+                <span title="View">👁️</span>
+                <span title="Edit">✏️</span>
+                <span title="Delete">🗑️</span>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"/></td>
+              <td>
+                <div class="prod"><div class="img"></div><div>
+                  <div style="font-weight:700;color:#2563eb;font-size:12px;cursor:pointer">00231</div>
+                  <div style="font-size:12px;color:#475569">Albibas Blue</div>
+                </div></div>
+              </td>
+              <td>300</td>
+              <td>40</td>
+              <td>
+                <div style="font-size:12px;color:#334155">August 22, 2025<br/>8:25 PM</div>
+              </td>
+              <td><span class="pill red">Out of Stock</span></td>
+              <td class="actions">
+                <span>👁️</span>
+                <span>✏️</span>
+                <span>🗑️</span>
+              </td>
+            </tr>
+            <!-- More rows can be duplicated as needed -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <div class="page">‹</div>
+        <div class="page active">1</div>
+        <div class="page">2</div>
+        <div class="page">3</div>
+        <div class="page">4</div>
+        <div class="page">5</div>
+        <div class="page">›</div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Guard
+    const isAuthed = sessionStorage.getItem('sg_admin_logged_in') === 'true';
+    if(!isAuthed){ window.location.replace('login.html'); }
+    
+         // Mobile sidebar toggle
+     function toggleSidebar() {
+       const sidebar = document.querySelector('.sidebar');
+       const overlay = document.querySelector('.sidebar-overlay');
+       const toggleButton = document.querySelector('.mobile-menu-toggle');
+       
+       sidebar.classList.toggle('open');
+       overlay.classList.toggle('open');
+       
+       // Hide toggle button when sidebar is opened
+       if (sidebar.classList.contains('open')) {
+         toggleButton.style.display = 'none';
+       }
+     }
+    
+    // Handle screen resize and toggle button visibility
+    function handleResize() {
+      const toggleButton = document.querySelector('.mobile-menu-toggle');
+      const sidebar = document.querySelector('.sidebar');
+      
+      if (window.innerWidth <= 768) {
+        // On mobile/tablet, show toggle button
+        toggleButton.style.display = 'block';
+        
+        // If sidebar is open, close it when screen gets too small
+        if (sidebar.classList.contains('open') && window.innerWidth <= 480) {
+          sidebar.classList.remove('open');
+          document.querySelector('.sidebar-overlay').classList.remove('open');
+        }
+      } else {
+        // On desktop, hide toggle button and ensure sidebar is visible
+        toggleButton.style.display = 'none';
+        sidebar.classList.remove('open');
+        document.querySelector('.sidebar-overlay').classList.remove('open');
+      }
+    }
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', handleResize);
+    
+    // Listen for window resize events
+    window.addEventListener('resize', handleResize);
+    
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+      const sidebar = document.querySelector('.sidebar');
+      const toggleButton = document.querySelector('.mobile-menu-toggle');
+      const overlay = document.querySelector('.sidebar-overlay');
+      
+      if (window.innerWidth <= 768 && 
+          !sidebar.contains(e.target) && 
+          !toggleButton.contains(e.target) && 
+          !overlay.contains(e.target)) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+      }
+    });
+  </script>
+  
+  <style>
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .layout{grid-template-columns:180px 1fr}
+      .sidebar{padding:12px 8px}
+      .brand span{font-size:13px}
+      .nav a{font-size:12px;padding:6px 8px}
+      .content{padding:0 20px 20px}
+      .toolbar{flex-wrap:wrap;gap:8px}
+      .search{min-width:200px}
+      .products{grid-template-columns:repeat(2, 1fr);gap:16px}
+    }
+    
+    @media (max-width: 768px) {
+      .layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+      .sidebar{position:fixed;top:0;left:-100%;width:250px;height:100vh;z-index:1000;transition:left 0.3s ease;box-shadow:2px 0 10px rgba(0,0,0,0.1)}
+      .sidebar.open{left:0}
+      .mobile-menu-toggle{display:block}
+             .content{padding:20px;margin-top:80px;overflow-y:auto;max-height:calc(100vh - 80px)}
+      .toolbar{flex-direction:row;align-items:center;gap:10px;flex-wrap:nowrap}
+      .search{min-width:200px;flex:1}
+      .products{grid-template-columns:1fr;gap:16px}
+      .page-title{margin:16px 0 16px}
+      .product-card{padding:16px}
+    }
+    
+    @media (max-width: 480px) {
+             .content{padding:16px;margin-top:70px;overflow-y:auto;max-height:calc(100vh - 70px)}
+      .mobile-menu-toggle{top:16px;left:16px;padding:10px}
+      .page-title{margin:12px 0 12px}
+      .page-title h1{font-size:22px}
+      .toolbar{flex-direction:row;gap:10px;flex-wrap:nowrap}
+      .btn{height:36px;font-size:12px}
+      .product-card{padding:12px}
+      .product-info{flex-direction:column;gap:8px;text-align:center}
+    }
+    
+    /* Mobile Menu Toggle Button */
+    .mobile-menu-toggle{display:none;position:fixed;top:20px;left:20px;z-index:1001;background:var(--brand);color:#fff;border:none;border-radius:8px;padding:12px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all 0.3s ease;animation:pulse 2s infinite}
+    .mobile-menu-toggle svg{width:20px;height:20px}
+    .mobile-menu-toggle:hover{background:var(--brand-600);transform:scale(1.05);animation:none}
+    
+    /* Pulse animation for toggle button */
+    @keyframes pulse {
+      0% { box-shadow: 0 4px 12px rgba(211, 47, 47, 0.15); }
+      50% { box-shadow: 0 4px 20px rgba(211, 47, 47, 0.4); }
+      100% { box-shadow: 0 4px 12px rgba(211, 47, 47, 0.15); }
+    }
+    
+    /* Overlay for mobile menu */
+    .sidebar-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity 0.3s ease}
+    .sidebar-overlay.open{display:block;opacity:1}
+    
+    /* Force table to maintain full size on all screens */
+    .table, .table table{min-width:100% !important;width:100% !important}
+    .table thead th, .table tbody td{min-width:auto !important}
+    
+    /* Ensure table maintains full width and makes page scrollable */
+    @media (max-width: 768px) {
+      .table{overflow:visible !important;min-width:100% !important;width:100% !important}
+      .table table{min-width:100% !important;width:100% !important}
+      .content{overflow-y:auto !important}
+    }
+    
+    @media (max-width: 480px) {
+      .table{overflow:visible !important;min-width:100% !important;width:100% !important}
+      .table table{min-width:100% !important;width:100% !important}
+      .content{overflow-y:auto !important}
+    }
+  </style>
+</body>
+</html>

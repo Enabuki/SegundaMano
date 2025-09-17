@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Segunda Mana - My Cart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css?v=9" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="brand">
+        <span class="brand__mark"></span>
+        <span class="brand__text">Segunda<br/>Mana</span>
+      </div>
+      <nav class="main-nav">
+        <a href="landing.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mobile-nav-close" aria-label="Close navigation">✕</button>
+      </nav>
+      <div class="header-tools">
+        <div class="search">
+          <input placeholder="What are you looking for?"/>
+          <span class="icon icon-search" aria-hidden="true"></span>
+        </div>
+        <a href="mycart.html" aria-label="My Cart"><span class="icon icon-cart" aria-hidden="true"></span></a>
+      </div>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay"></div>
+
+  <main class="cart-wrapper">
+    <div class="container cart-grid">
+      <div class="cart-main">
+        <h1 class="cart-title">My Cart</h1>
+
+        <div class="cart-table">
+          <div class="cart-head">
+            <div>Product</div>
+            <div>Price</div>
+            <div>Subtotal</div>
+            <div></div>
+          </div>
+
+          <div class="cart-row">
+            <div class="c-item">
+              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=480&q=80" alt="Skirt"/>
+              <div class="c-info">
+                <div class="c-name">Pleated Skirt</div>
+                <div class="c-variant">Color: Gray</div>
+              </div>
+            </div>
+            <div class="c-price">₱200.00</div>
+            <div class="c-subtotal">₱200.00</div>
+            <button class="c-remove" aria-label="Remove">✕</button>
+          </div>
+
+          <div class="cart-row">
+            <div class="c-item">
+              <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=480&q=80" alt="Long Sleeve Polo"/>
+              <div class="c-info">
+                <div class="c-name">Long Sleeve Polo</div>
+                <div class="c-variant">Color: Blue</div>
+              </div>
+            </div>
+            <div class="c-price">₱200.00</div>
+            <div class="c-subtotal">₱200.00</div>
+            <button class="c-remove" aria-label="Remove">✕</button>
+          </div>
+
+          <div class="cart-row">
+            <div class="c-item">
+              <img src="https://picsum.photos/seed/dress/480/480" alt="Dress"/>
+              <div class="c-info">
+                <div class="c-name">Dress</div>
+                <div class="c-variant">Color: Brown</div>
+              </div>
+            </div>
+            <div class="c-price">₱200.00</div>
+            <div class="c-subtotal">₱200.00</div>
+            <button class="c-remove" aria-label="Remove">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="cart-summary">
+        <div class="summary-card">
+          <div class="summary-title">Cart</div>
+          <div class="summary-row"><span>Subtotal</span><span><strong>₱600.00</strong></span></div>
+          <div class="summary-row total"><span>Total</span><span><strong>₱600.00</strong></span></div>
+          <a href="checkout.html" class="summary-checkout">Proceed to checkout</a>
+        </div>
+      </aside>
+    </div>
+
+    <section class="container cart-suggest">
+      <h2 class="section-title" style="text-align:left">You might also like:</h2>
+      <div class="shop-grid">
+        <a class="p-link" href="#"><article class="p-card"><div class="p-thumb"><img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=800&q=80" alt="Flowy Dress"/></div><div class="p-info"><div class="p-name">Flowy Dress</div><div class="p-variant">Blue</div><div class="p-price">₱200.00</div></div></article></a>
+        <a class="p-link" href="#"><article class="p-card"><div class="p-thumb"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80" alt="Cardigan"/></div><div class="p-info"><div class="p-name">Cardigan</div><div class="p-variant">Black</div><div class="p-price">₱200.00</div></div></article></a>
+        <a class="p-link" href="#"><article class="p-card"><div class="p-thumb"><img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?auto=format&fit=crop&w=800&q=80" alt="Flowy Dress"/></div><div class="p-info"><div class="p-name">Flowy Dress</div><div class="p-variant">Blue</div><div class="p-price">₱200.00</div></div></article></a>
+        <a class="p-link" href="#"><article class="p-card"><div class="p-thumb"><img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80" alt="Cardigan"/></div><div class="p-info"><div class="p-name">Cardigan</div><div class="p-variant">Black</div><div class="p-price">₱200.00</div></div></article></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© 2025 Segunda Mana. Shop with purpose.</footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    
+    function toggleMobileNav() {
+      mainNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+      mobileNavToggle.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileNav() {
+      mainNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileNavToggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    mobileNavToggle.addEventListener('click', toggleMobileNav);
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+    mobileNavClose.addEventListener('click', closeMobileNav);
+    
+    // Close mobile nav on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        closeMobileNav();
+      }
+    });
+  </script>
+</body>
+</html>
+
+

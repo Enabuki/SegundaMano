@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Segunda Mana - Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css?v=6" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="brand">
+        <span class="brand__mark"></span>
+        <span class="brand__text">Segunda<br/>Mana</span>
+      </div>
+      <nav class="main-nav">
+        <a href="landing.html">Home</a>
+        <a class="active" href="#">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mobile-nav-close" aria-label="Close navigation">✕</button>
+      </nav>
+      <div class="header-tools">
+        <div class="search">
+          <input placeholder="What are you looking for?"/>
+          <span class="icon icon-search" aria-hidden="true"></span>
+        </div>
+        <a href="mycart.html" aria-label="My Cart"><span class="icon icon-cart" aria-hidden="true"></span></a>
+      </div>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay"></div>
+
+  <main class="shop-wrapper">
+    <div class="shop-container">
+      <!-- Sidebar -->
+      <aside class="shop-sidebar">
+        <button class="sidebar-close" aria-label="Close sidebar">✕</button>
+        <button class="filter-toggle">Filter</button>
+        <div class="filter-block">
+          <div class="filter-title">Categories</div>
+          <ul class="filter-list">
+            <li><a href="#">Furniture</a></li>
+            <li class="is-active"><a href="#">Clothes</a></li>
+            <li><a href="#">Gadgets & Phones</a></li>
+            <li><a href="#">Bags</a></li>
+            <li><a href="#">Toys</a></li>
+            <li><a href="#">Dining</a></li>
+            <li><a href="#">Outdoor</a></li>
+          </ul>
+        </div>
+
+        <div class="filter-block">
+          <div class="filter-title">Price</div>
+          <p class="filter-note">Share your budget with us — we’ll surprise you with items that support a scholar.</p>
+          <div class="price-inputs">
+            <input type="text" placeholder="₱ min" />
+            <span>–</span>
+            <input type="text" placeholder="₱ max" />
+          </div>
+          <ul class="filter-list small">
+            <li><label><input type="checkbox" checked /> ₱0 – ₱100.00</label></li>
+            <li><label><input type="checkbox" /> ₱100.00 – ₱199.99</label></li>
+            <li><label><input type="checkbox" /> ₱200.00 – ₱299.99</label></li>
+            <li><label><input type="checkbox" /> ₱300.00 – ₱399.99</label></li>
+            <li><label><input type="checkbox" /> ₱400.00+</label></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <section class="shop-main">
+        <h1 class="shop-title">Clothes</h1>
+        <div class="shop-grid">
+          <!-- product card -->
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+
+          <article class="p-card">
+            <a href="product.html" class="p-add">Add to cart</a>
+            <a href="product.html" class="p-link">
+              <figure class="p-thumb"><img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" alt="Half Zip Sweater"/></figure>
+              <div class="p-info">
+                <div class="p-name">Half Zip Sweater</div>
+                <div class="p-variant">Navy Blue</div>
+                <div class="p-price">₱200.00</div>
+              </div>
+            </a>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Segunda Mana. Shop with purpose.</footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    
+    function toggleMobileNav() {
+      mainNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+      mobileNavToggle.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileNav() {
+      mainNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileNavToggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    mobileNavToggle.addEventListener('click', toggleMobileNav);
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+    mobileNavClose.addEventListener('click', closeMobileNav);
+    
+    // Sidebar Toggle for shop filters
+    const shopSidebar = document.querySelector('.shop-sidebar');
+    const sidebarClose = document.querySelector('.sidebar-close');
+    
+    function closeSidebar() {
+      shopSidebar.classList.remove('active');
+    }
+    
+    sidebarClose.addEventListener('click', closeSidebar);
+    
+    // Close mobile nav and sidebar on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        closeMobileNav();
+        shopSidebar.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

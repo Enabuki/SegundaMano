@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Segunda Mana - Thank You!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css?v=11" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="brand">
+        <span class="brand__mark"></span>
+        <span class="brand__text">Segunda<br/>Mana</span>
+      </div>
+      <nav class="main-nav">
+        <a href="landing.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mobile-nav-close" aria-label="Close navigation">✕</button>
+      </nav>
+      <div class="header-tools">
+        <div class="search">
+          <input placeholder="What are you looking for?"/>
+          <span class="icon icon-search" aria-hidden="true"></span>
+        </div>
+        <a href="mycart.html" aria-label="My Cart"><span class="icon icon-cart" aria-hidden="true"></span></a>
+      </div>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay"></div>
+
+  <main class="thankyou-wrapper">
+    <div class="thankyou-content">
+      <h1 class="thankyou-title">Thank you!</h1>
+      
+      <p class="thankyou-message">
+        Your order of <strong>₱200.00</strong> will <strong>provide two weeks'</strong> worth of meals for a scholar.
+      </p>
+
+      <div class="thankyou-order">
+        <div class="thankyou-order-row">
+          <span class="label">Order code:</span>
+          <span class="value">#INF_223</span>
+        </div>
+        <div class="thankyou-order-row">
+          <span class="label">Date:</span>
+          <span class="value">August 25, 2024</span>
+        </div>
+        <div class="thankyou-order-row total">
+          <span class="label">Total:</span>
+          <span class="value">₱200.00</span>
+        </div>
+      </div>
+
+      <div class="thankyou-actions">
+        <a href="#" class="thankyou-btn primary">Download Certificate of Donation</a>
+        <a href="shop.html" class="thankyou-btn secondary">Continue Shopping</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating Social Media Icon -->
+  <a href="#" class="thankyou-float" aria-label="Follow us on Facebook">F</a>
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    
+    function toggleMobileNav() {
+      mainNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+      mobileNavToggle.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileNav() {
+      mainNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileNavToggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    mobileNavToggle.addEventListener('click', toggleMobileNav);
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+    mobileNavClose.addEventListener('click', closeMobileNav);
+    
+    // Close mobile nav on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        closeMobileNav();
+      }
+    });
+  </script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

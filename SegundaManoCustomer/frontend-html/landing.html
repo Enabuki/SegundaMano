@@ -1,0 +1,149 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Segunda Mana - Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css?v=5" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="brand">
+        <span class="brand__mark"></span>
+        <span class="brand__text">Segunda<br/>Mana</span>
+      </div>
+      <nav class="main-nav">
+        <a class="active" href="#">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mobile-nav-close" aria-label="Close navigation">✕</button>
+      </nav>
+      <div class="header-tools">
+        <div class="search">
+          <input placeholder="What are you looking for?"/>
+          <span class="icon icon-search" aria-hidden="true"></span>
+        </div>
+        <a href="mycart.html" aria-label="My Cart"><span class="icon icon-cart" aria-hidden="true"></span></a>
+      </div>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero__banner">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1800&auto=format&fit=crop" alt="Store banner" />
+          <h1 class="hero__title">Shop with Heart. Give with Purpose.</h1>
+          <p class="hero__subtitle">Segunda Mana turns donations into hope, shop today and be part of our mission.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro container">
+      <div class="intro__title-wrap">
+        <h2 class="intro__title">Segunda<br/>Mana</h2>
+      </div>
+      <div class="intro__copy-wrap">
+        <hr class="intro__rule"/>
+        <p class="intro__copy">Where every purchase makes an impact. By buying quality pre‑loved items, you’re not just getting great finds — you’re helping send underprivileged youth to school, support struggling families, and build a more sustainable, compassionate community.</p>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <div class="container">
+        <div class="metrics__header">
+          <h2 class="metrics__title">BY THE NUMBERS</h2>
+          <p class="metrics__subtitle">54 Segunda Mana Stores</p>
+        </div>
+        <div class="metrics__grid">
+          <div class="metric-card">
+            <div class="metric-card__content">
+              <div class="metric-card__value">40</div>
+              <div class="metric-card__label">Charity Outlets</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__content">
+              <div class="metric-card__value">10</div>
+              <div class="metric-card__label">Parish Kiosks</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__content">
+              <div class="metric-card__value">4</div>
+              <div class="metric-card__label">Long-Term Bazaars</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <h3 class="section-title">Our Products:</h3>
+      <div class="products">
+        <article class="card"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=900&auto=format&fit=crop" alt="Product"><div class="card__body"><p class="card__name">Half Zip Sweater<br/>Navy Blue</p><div class="card__price">₱200.00</div></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=900&auto=format&fit=crop" alt="Product"><div class="card__body"><p class="card__name">Half Zip Sweater<br/>Navy Blue</p><div class="card__price">₱200.00</div></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=900&auto=format&fit=crop" alt="Product"><div class="card__body"><p class="card__name">Half Zip Sweater<br/>Navy Blue</p><div class="card__price">₱200.00</div></div></article>
+      </div>
+    </section>
+
+    <section class="announcement container">
+      <div class="announcement__box" style="max-width:980px;margin:0 auto;border-radius:16px;box-shadow:0 12px 28px rgba(0,0,0,.12);padding:20px 24px;display:grid;grid-template-columns:260px 1fr;gap:24px;">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop" alt="Announcement" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/>
+        <div>
+          <span class="badge">ANNOUNCEMENT</span>
+          <p class="announce__title" style="text-transform:uppercase;font-weight:700;font-size:13px;letter-spacing:.35px;margin:6px 0 12px;">Important Announcement Our Valued Segunda Mana Donors</p>
+          <p class="announce__text" style="color:#555;font-size:14px;line-height:1.6;margin:0;">Starting September 1, 2025: Segunda Mana Charity Outlets will NO LONGER ACCEPT in‑kind donations (such as clothes, shoes, household items, etc.).</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© 2025 Segunda Mana. Shop with purpose.</footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    
+    function toggleMobileNav() {
+      mainNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+      mobileNavToggle.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileNav() {
+      mainNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileNavToggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    mobileNavToggle.addEventListener('click', toggleMobileNav);
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+    mobileNavClose.addEventListener('click', closeMobileNav);
+    
+    // Close mobile nav on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        closeMobileNav();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segunda Mana Admin - Add Order</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#f6f7fb; --panel:#ffffff; --text:#0f172a; --muted:#6b7280; --border:#e5e7eb; --brand:#d32f2f; --green:#10b981; --blue:#3b82f6; --red:#ef4444; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+
+    .layout{display:grid;grid-template-columns:210px 1fr;min-height:100dvh}
+    .sidebar{background:linear-gradient(180deg, #fbf4f4 0%, #f1eef7 50%, #f6ece7 100%);border-right:1px solid var(--border);padding:14px 10px}
+    .brand{display:flex;align-items:center;gap:8px;margin:6px 6px;margin-left:16px}
+    .logo{width:22px;height:22px;background:var(--brand);border-radius:4px}
+    .brand span{font-weight:800;font-size:14px}
+    .section-title{color:#9aa3b2;font-weight:700;font-size:10px;letter-spacing:.08em;margin:10px 8px 6px;text-transform:uppercase}
+    .nav a{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;color:#111;text-decoration:none;font-size:13px}
+    .nav .ico{width:16px;height:16px;color:#8c94a6}
+    .nav a.active{background:var(--brand);color:#fff}
+    .nav a.active .ico{color:#fff}
+
+    .content{padding:0 16px 24px}
+    .page-title{margin:24px 0 18px}
+    .page-title h1{font-size:28px;font-weight:800;color:var(--text);margin:0}
+
+    .form-container{max-width:100%;margin:18px 0 0;display:flex;flex-direction:column;align-items:stretch}
+    .form-panel{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;width:100%}
+    .form-title{font-size:18px;font-weight:700;margin-bottom:20px;color:var(--text)}
+    
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group.full{grid-column:1/-1}
+    .form-label{font-size:13px;font-weight:600;color:var(--text)}
+    .form-input{height:40px;border:1px solid var(--border);border-radius:8px;padding:0 12px;font-size:13px;background:#fff;width:100%}
+    .form-input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(211,47,47,0.1)}
+    .form-select{height:40px;border:1px solid var(--border);border-radius:8px;padding:0 12px;font-size:13px;background:#fff;cursor:pointer;width:100%}
+    .form-textarea{min-height:100px;border:1px solid var(--border);border-radius:8px;padding:12px;font-size:13px;background:#fff;resize:vertical;font-family:inherit;width:100%}
+    .form-textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(211,47,47,0.1)}
+    
+    .form-actions{display:flex;gap:12px;justify-content:center;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+    .btn{height:40px;border:1px solid var(--border);background:#fff;border-radius:8px;padding:0 16px;cursor:pointer;font-weight:600;font-size:13px;transition:all 0.2s}
+    .btn:hover{background:#f9fafb}
+         .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;text-decoration:none}
+    .btn.primary:hover{background:var(--brand-600);border-color:var(--brand-600)}
+
+    .required{color:#ef4444;margin-left:4px}
+    
+    .product-list{display:grid;gap:12px;margin-top:16px}
+    .product-item{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:8px;background:#f9fafb}
+    .product-info{flex:1}
+    .product-name{font-weight:600;font-size:14px;color:var(--text)}
+    .product-details{font-size:12px;color:var(--muted);margin-top:4px}
+    .product-actions{display:flex;gap:8px;align-items:center}
+    .quantity-input{width:60px;height:32px;border:1px solid var(--border);border-radius:6px;padding:0 8px;text-align:center;font-size:12px}
+    .remove-btn{background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:500}
+    
+    .add-product-btn{background:#f0f9ff;color:#075985;border:1px solid #0ea5e9;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;font-weight:500;margin-top:12px}
+    .add-product-btn:hover{background:#e0f2fe}
+    
+    .total-section{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:20px}
+    .total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .total-row:last-child{margin-bottom:0;padding-top:12px;border-top:1px solid var(--border);font-weight:700;font-size:16px}
+  </style>
+</head>
+<body>
+  <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 12h18M3 6h18M3 18h18"/>
+    </svg>
+  </button>
+  
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><div class="logo" style="background: #d32f2f; width: 22px; height: 22px; border-radius: 4px;"></div><span style="display: flex; flex-direction: column; line-height: 1;"><span>Segunda</span><span>Mana</span></span></div>
+      <nav class="nav">
+        <div class="section-title">GENERAL</div>
+        <a href="dashboard.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg>Dashboard</a>
+        <a href="product.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18"/><path d="M6 3v4"/><path d="M6 7v14"/><rect x="6" y="11" width="12" height="10" rx="2"/></svg>Product</a>
+        <a class="active" href="orders.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8"/><path d="M3 15l3.5-2 3.5 2 3.5-2 3.5 2 3.5-2V19a2 2 0 1 1-2 2H5a2 2 0 1 1-2-2z"/></svg>Order Management</a>
+        <a href="beneficiary.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Beneficiary</a>
+        <a href="announcement.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18v16H3z"/><path d="M7 8h10"/><path d="M7 12h6"/></svg>Announcement</a>
+        <div class="section-title">TOOLS</div>
+        <a href="activity.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h6v6H3z"/><path d="M15 5h6v6h-6z"/><path d="M9 13h6v6H9z"/></svg>Activity Log</a>
+        <a href="account-settings.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 3 16.6a1.65 1.65 0 0 0-1.51-1H1a2 2 0 1 1 0-4h.09c.66 0 1.26-.39 1.51-1 .25-.6.11-1.3-.33-1.78"/></svg>Account Settings</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="page-title" style="text-align: center;">
+        <h1>Add New Order</h1>
+      </div>
+
+      <div class="form-container">
+        <form id="orderForm">
+          <!-- Customer Information -->
+          <div class="form-panel">
+            <div class="form-title">Customer Information</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Customer Name <span class="required">*</span></label>
+                <input type="text" class="form-input" placeholder="Enter customer full name" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Contact Number <span class="required">*</span></label>
+                <input type="tel" class="form-input" placeholder="Enter contact number" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" placeholder="Enter email address">
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Delivery Address <span class="required">*</span></label>
+                <input type="text" class="form-input" placeholder="Enter delivery address" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">City/Municipality <span class="required">*</span></label>
+                <input type="text" class="form-input" placeholder="Enter city or municipality" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Province <span class="required">*</span></label>
+                <input type="text" class="form-input" placeholder="Enter province" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Selection -->
+          <div class="form-panel">
+            <div class="form-title">Product Selection</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Product <span class="required">*</span></label>
+                <select class="form-select" id="productSelect" required>
+                  <option value="">Select a product</option>
+                  <option value="product1" data-price="300" data-size="40">Albibas Blue - Size 40 - ₱300</option>
+                  <option value="product2" data-price="250" data-size="38">Albibas Red - Size 38 - ₱250</option>
+                  <option value="product3" data-price="350" data-size="42">Albibas Green - Size 42 - ₱350</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Quantity <span class="required">*</span></label>
+                <input type="number" class="form-input" id="quantityInput" placeholder="Enter quantity" min="1" value="1" required>
+              </div>
+            </div>
+            
+            <button type="button" class="add-product-btn" onclick="addProduct()">+ Add Product to Order</button>
+            
+            <div class="product-list" id="productList">
+              <!-- Products will be added here dynamically -->
+            </div>
+          </div>
+
+          <!-- Order Details -->
+          <div class="form-panel">
+            <div class="form-title">Order Details</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Order Date</label>
+                <input type="date" class="form-input" id="orderDate" readonly>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Expected Delivery Date</label>
+                <input type="date" class="form-input" id="deliveryDate">
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Payment Method <span class="required">*</span></label>
+                <select class="form-select" required>
+                  <option value="">Select payment method</option>
+                  <option value="cash">Cash on Delivery</option>
+                  <option value="bank">Bank Transfer</option>
+                  <option value="gcash">GCash</option>
+                  <option value="paymaya">PayMaya</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Order Status <span class="required">*</span></label>
+                <select class="form-select" required>
+                  <option value="">Select status</option>
+                  <option value="pending">Pending</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="processing">Processing</option>
+                  <option value="shipped">Shipped</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+              
+              <div class="form-group full">
+                <label class="form-label">Special Instructions</label>
+                <textarea class="form-textarea" placeholder="Enter any special instructions or notes for this order"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="form-panel">
+            <div class="form-title">Order Summary</div>
+            <div class="total-section">
+              <div class="total-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">₱0.00</span>
+              </div>
+              <div class="total-row">
+                <span>Shipping Fee:</span>
+                <span id="shipping">₱50.00</span>
+              </div>
+              <div class="total-row">
+                <span>Total Amount:</span>
+                <span id="total">₱50.00</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn" onclick="window.history.back()">Cancel</button>
+            <button type="submit" class="btn primary">Create Order</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Guard
+    const isAuthed = sessionStorage.getItem('sg_admin_logged_in') === 'true';
+    if(!isAuthed){ window.location.replace('login.html'); }
+    
+    let products = [];
+    let productCounter = 0;
+    
+    // Set current date for order date
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('orderDate').value = today;
+      
+      // Set default delivery date to 3 days from now
+      const deliveryDate = new Date();
+      deliveryDate.setDate(deliveryDate.getDate() + 3);
+      document.getElementById('deliveryDate').value = deliveryDate.toISOString().split('T')[0];
+    });
+    
+    // Add product to order
+    function addProduct() {
+      const productSelect = document.getElementById('productSelect');
+      const quantityInput = document.getElementById('quantityInput');
+      
+      if (!productSelect.value || !quantityInput.value || quantityInput.value < 1) {
+        alert('Please select a product and enter a valid quantity');
+        return;
+      }
+      
+      const selectedOption = productSelect.options[productSelect.selectedIndex];
+      const productName = selectedOption.text;
+      const price = parseFloat(selectedOption.dataset.price);
+      const size = selectedOption.dataset.size;
+      const quantity = parseInt(quantityInput.value);
+      
+      const product = {
+        id: productCounter++,
+        name: productName,
+        price: price,
+        size: size,
+        quantity: quantity,
+        total: price * quantity
+      };
+      
+      products.push(product);
+      renderProducts();
+      updateTotals();
+      
+      // Reset form
+      productSelect.value = '';
+      quantityInput.value = 1;
+    }
+    
+    // Remove product from order
+    function removeProduct(productId) {
+      products = products.filter(p => p.id !== productId);
+      renderProducts();
+      updateTotals();
+    }
+    
+    // Update product quantity
+    function updateQuantity(productId, newQuantity) {
+      const product = products.find(p => p.id === productId);
+      if (product) {
+        product.quantity = parseInt(newQuantity);
+        product.total = product.price * product.quantity;
+        renderProducts();
+        updateTotals();
+      }
+    }
+    
+    // Render products list
+    function renderProducts() {
+      const productList = document.getElementById('productList');
+      productList.innerHTML = '';
+      
+      products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.className = 'product-item';
+        productItem.innerHTML = `
+          <div class="product-info">
+            <div class="product-name">${product.name}</div>
+            <div class="product-details">Size: ${product.size} | Price: ₱${product.price}</div>
+          </div>
+          <div class="product-actions">
+            <input type="number" class="quantity-input" value="${product.quantity}" min="1" 
+                   onchange="updateQuantity(${product.id}, this.value)">
+            <span style="font-size: 12px; color: var(--muted);">₱${product.total}</span>
+            <button type="button" class="remove-btn" onclick="removeProduct(${product.id})">Remove</button>
+          </div>
+        `;
+        productList.appendChild(productItem);
+      });
+    }
+    
+    // Update totals
+    function updateTotals() {
+      const subtotal = products.reduce((sum, product) => sum + product.total, 0);
+      const shipping = 50;
+      const total = subtotal + shipping;
+      
+      document.getElementById('subtotal').textContent = `₱${subtotal.toFixed(2)}`;
+      document.getElementById('shipping').textContent = `₱${shipping.toFixed(2)}`;
+      document.getElementById('total').textContent = `₱${total.toFixed(2)}`;
+    }
+    
+    // Form submission
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (products.length === 0) {
+        alert('Please add at least one product to the order');
+        return;
+      }
+      
+      // Here you would typically send the data to your backend
+      alert('Order created successfully!');
+      window.location.href = 'orders.html';
+    });
+    
+    // Mobile sidebar toggle
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      const overlay = document.querySelector('.sidebar-overlay');
+      const toggleButton = document.querySelector('.mobile-menu-toggle');
+      
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+      
+      // Hide toggle button when sidebar is opened
+      if (sidebar.classList.contains('open')) {
+        toggleButton.style.display = 'none';
+      }
+    }
+    
+    // Handle screen resize and toggle button visibility
+    function handleResize() {
+      const toggleButton = document.querySelector('.mobile-menu-toggle');
+      const sidebar = document.querySelector('.sidebar');
+      
+      if (window.innerWidth <= 768) {
+        toggleButton.style.display = 'block';
+        if (sidebar.classList.contains('open') && window.innerWidth <= 480) {
+          sidebar.classList.remove('open');
+          document.querySelector('.sidebar-overlay').classList.remove('open');
+        }
+      } else {
+        toggleButton.style.display = 'none';
+        sidebar.classList.remove('open');
+        document.querySelector('.sidebar-overlay').classList.remove('open');
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', handleResize);
+    window.addEventListener('resize', handleResize);
+    
+    document.addEventListener('click', function(e) {
+      const sidebar = document.querySelector('.sidebar');
+      const toggleButton = document.querySelector('.mobile-menu-toggle');
+      const overlay = document.querySelector('.sidebar-overlay');
+      
+      if (window.innerWidth <= 768 && 
+          !sidebar.contains(e.target) && 
+          !toggleButton.contains(e.target) && 
+          !overlay.contains(e.target)) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+      }
+    });
+  </script>
+  
+  <style>
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .layout{grid-template-columns:180px 1fr}
+      .sidebar{padding:12px 8px}
+      .brand span{font-size:13px}
+      .nav a{font-size:12px;padding:6px 8px}
+             .content{padding:0 12px 20px}
+      .form-grid{grid-template-columns:1fr;gap:16px}
+    }
+    
+    @media (max-width: 768px) {
+      .layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+      .sidebar{position:fixed;top:0;left:-100%;width:250px;height:100vh;z-index:1000;transition:left 0.3s ease;box-shadow:2px 0 10px rgba(0,0,0,0.1)}
+      .sidebar.open{left:0}
+      .mobile-menu-toggle{display:block}
+             .content{padding:16px;margin-top:80px}
+      .page-title{margin:16px 0 16px}
+      .form-panel{padding:20px}
+      .form-grid{grid-template-columns:1fr;gap:16px}
+      .product-item{flex-direction:column;align-items:flex-start;gap:8px}
+      .product-actions{width:100%;justify-content:space-between}
+    }
+    
+    @media (max-width: 480px) {
+             .content{padding:12px;margin-top:70px}
+      .mobile-menu-toggle{top:16px;left:16px;padding:10px}
+      .page-title{margin:12px 0 12px}
+      .page-title h1{font-size:22px}
+      .form-panel{padding:16px}
+      .form-actions{flex-direction:column}
+      .btn{width:100%}
+      .product-actions{flex-direction:column;gap:8px;align-items:stretch}
+      .quantity-input{width:100%}
+    }
+    
+    /* Mobile Menu Toggle Button */
+    .mobile-menu-toggle{display:none;position:fixed;top:20px;left:20px;z-index:1001;background:var(--brand);color:#fff;border:none;border-radius:8px;padding:12px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all 0.3s ease;animation:pulse 2s infinite}
+    .mobile-menu-toggle svg{width:20px;height:20px}
+    .mobile-menu-toggle:hover{background:var(--brand-600);transform:scale(1.05);animation:none}
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 4px 12px rgba(211, 47, 47, 0.15); }
+      50% { box-shadow: 0 4px 20px rgba(211, 47, 47, 0.4); }
+      100% { box-shadow: 0 4px 12px rgba(211, 47, 47, 0.15); }
+    }
+    
+    .sidebar-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;opacity:0;transition:opacity 0.3s ease}
+    .sidebar-overlay.open{display:block;opacity:1}
+  </style>
+</body>
+</html>

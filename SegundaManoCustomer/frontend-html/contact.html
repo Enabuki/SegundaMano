@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Segunda Mana - Contact Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css?v=12" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="brand">
+        <span class="brand__mark"></span>
+        <span class="brand__text">Segunda<br/>Mana</span>
+      </div>
+      <nav class="main-nav">
+        <a href="landing.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a class="active" href="#">Contact Us</a>
+        <button class="mobile-nav-close" aria-label="Close navigation">✕</button>
+      </nav>
+      <div class="header-tools">
+        <div class="search">
+          <input placeholder="What are you looking for?"/>
+          <span class="icon icon-search" aria-hidden="true"></span>
+        </div>
+        <a href="mycart.html" aria-label="My Cart"><span class="icon icon-cart" aria-hidden="true"></span></a>
+      </div>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay"></div>
+
+  <main class="contact-wrapper">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <h1>We would love to hear from you!</h1>
+          <p>Questions, comments, or suggestions? Simply fill in the form and we'll be in touch shortly.</p>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon address"></div>
+              <span>2002 Jesus St, Pandacan, Manila, 1011 Metro Manila</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon phone"></div>
+              <span>(02) 8562 0020</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon email"></div>
+              <span>donatedgoods@caritasmanila.org.ph</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2>Send us a message</h2>
+          <form>
+            <div class="contact-field">
+              <label>First Name *</label>
+              <input type="text" placeholder="First name" value="Makoy" />
+            </div>
+            <div class="contact-field">
+              <label>Last Name *</label>
+              <input type="text" placeholder="Last name" />
+            </div>
+            <div class="contact-field">
+              <label>Email *</label>
+              <input type="email" placeholder="Your email address" />
+            </div>
+            <div class="contact-field">
+              <label>Phone Number *</label>
+              <input type="tel" placeholder="Your phone number" />
+            </div>
+            <div class="contact-field">
+              <label>Your message...</label>
+              <textarea placeholder="Tell us how we can help you"></textarea>
+            </div>
+            <button type="submit" class="contact-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 Segunda Mana. Shop with purpose.</footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    
+    function toggleMobileNav() {
+      mainNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+      mobileNavToggle.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileNav() {
+      mainNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileNavToggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    mobileNavToggle.addEventListener('click', toggleMobileNav);
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+    mobileNavClose.addEventListener('click', closeMobileNav);
+    
+    // Close mobile nav on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        closeMobileNav();
+      }
+    });
+  </script>
+</body>
+</html>

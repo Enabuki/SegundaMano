@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Segunda Mana - Product</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css?v=7" />
+  <style>
+    .pd-wrap{max-width:1200px;margin:32px auto;padding:0 16px;display:grid;grid-template-columns:150px 1fr 540px;gap:28px}
+    .pd-thumbs{display:grid;gap:8px}
+    .pd-thumbs img{width:100%;height:150px;object-fit:cover;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+    .pd-main img{width:100%;height:520px;object-fit:cover;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.1)}
+    .pd-info h1{font-size:28px;margin:0 0 14px}
+    .pd-desc{color:#555;line-height:1.6;margin-bottom:18px;max-width:520px}
+    .pd-price{font-weight:800;font-size:18px;margin:12px 0 18px}
+    .pd-meta{font-size:12px;color:#888;margin-top:18px}
+    .pd-btn{display:inline-block;background:#d62828;color:#fff;border:0;border-radius:8px;padding:12px 18px;font-weight:700}
+    .pd-field{margin:12px 0}
+    .pd-field label{display:block;font-size:12px;color:#777;margin-bottom:6px}
+    .pd-select{border:1px solid #e5e5e5;border-radius:8px;padding:10px 12px;width:220px}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="brand">
+        <span class="brand__mark"></span>
+        <span class="brand__text">Segunda<br/>Mana</span>
+      </div>
+      <nav class="main-nav">
+        <a href="landing.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mobile-nav-close" aria-label="Close navigation">✕</button>
+      </nav>
+      <div class="header-tools">
+        <div class="search">
+          <input placeholder="What are you looking for?"/>
+          <span class="icon icon-search" aria-hidden="true"></span>
+        </div>
+        <a href="mycart.html" aria-label="My Cart"><span class="icon icon-cart" aria-hidden="true"></span></a>
+      </div>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay"></div>
+
+  <main class="pd-wrap">
+    <!-- gallery thumbs -->
+    <aside class="pd-thumbs">
+      <img src="https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?q=80&w=800&auto=format&fit=crop" alt="thumb"/>
+      <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" alt="thumb"/>
+      <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=800&auto=format&fit=crop" alt="thumb"/>
+    </aside>
+
+    <!-- main image -->
+    <section class="pd-main">
+      <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop" alt="Half-Zip Stripped Sweater"/>
+    </section>
+
+    <!-- info -->
+    <section class="pd-info">
+      <h1>Half‑Zip Stripped Sweater</h1>
+      <p class="pd-desc">A classic layering piece with a modern twist. This half‑zip sweater features a timeless striped design, soft knit fabric, and a versatile zip‑up collar for adjustable comfort. Finished with ribbed cuffs and hem for a snug fit, it’s perfect for both casual days and smart‑casual looks.</p>
+      <div class="pd-price">₱200.00</div>
+
+      <div class="pd-field">
+        <label>Measurements</label>
+        <select class="pd-select">
+          <option>Small</option>
+          <option>Medium</option>
+          <option>Large</option>
+        </select>
+      </div>
+
+      <button class="pd-btn">Add to Cart</button>
+
+      <div class="pd-meta">
+        <div><strong>Category</strong>: Clothing</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© 2025 Segunda Mana. Shop with purpose.</footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavClose = document.querySelector('.mobile-nav-close');
+    
+    function toggleMobileNav() {
+      mainNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+      mobileNavToggle.classList.toggle('active');
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileNav() {
+      mainNav.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      mobileNavToggle.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    mobileNavToggle.addEventListener('click', toggleMobileNav);
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+    mobileNavClose.addEventListener('click', closeMobileNav);
+    
+    // Close mobile nav on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        closeMobileNav();
+      }
+    });
+  </script>
+</body>
+</html>
