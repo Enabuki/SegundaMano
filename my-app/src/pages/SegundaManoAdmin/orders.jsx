@@ -1,10 +1,38 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import {
+  Home,
+  Box,
+  ClipboardList,
+  User,
+  Megaphone,
+  Activity,
+  Settings,
+} from "lucide-react";
 
+import "../../css/styles.css";
+import "../../css/adminsidebar.css";
 
-function OrderManagement() {
+const OrderManagement = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Authentication check
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) {
+        setSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const isAuthed = sessionStorage.getItem("sg_admin_logged_in") === "true";
     if (!isAuthed) {
@@ -12,95 +40,107 @@ function OrderManagement() {
     }
   }, []);
 
-  // Handle responsive resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setSidebarOpen(false);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
   return (
-    <div>
-      {/* Mobile Toggle Button */}
+    <>
+      {/* Mobile Menu Toggle */}
       <button
-        className="mobile-menu-toggle"
+        className="admin-mobile-menu-toggle"
+        style={{
+          display: window.innerWidth <= 768 && !sidebarOpen ? "block" : "none",
+        }}
         onClick={toggleSidebar}
-        style={{ display: window.innerWidth <= 768 ? "block" : "none" }}
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
           <path d="M3 12h18M3 6h18M3 18h18" />
         </svg>
       </button>
 
       {/* Overlay */}
       <div
-        className={`sidebar-overlay ${sidebarOpen ? "open" : ""}`}
+        className={`admin-sidebar-overlay ${sidebarOpen ? "open" : ""}`}
         onClick={toggleSidebar}
       ></div>
 
-      <div className="layout">
+      <div className="admin-settings-layout">
         {/* Sidebar */}
-        <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-          <div className="brand">
-            <div
-              className="logo"
-              style={{ background: "#d32f2f", width: 18, height: 18, borderRadius: 4 }}
-            ></div>
-            <span style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+        <aside className={`admin-sidebar ${sidebarOpen ? "open" : ""}`}>
+          <div className="admin-brand">
+            <div className="admin-logo"></div>
+            <span className="admin-brand-text">
               <span>Segunda</span>
               <span>Mana</span>
             </span>
           </div>
-          <nav className="nav">
-            <div className="section-title">GENERAL</div>
-            <a href="/dashboard">
-              <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 12l9-9 9 9" />
-                <path d="M9 21V9h6v12" />
-              </svg>
-              Dashboard
-            </a>
-            <a href="/product">
-              <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 7h18" />
-                <path d="M6 3v4" />
-                <path d="M6 7v14" />
-                <rect x="6" y="11" width="12" height="10" rx="2" />
-              </svg>
-              Product
-            </a>
-            <a className="active" href="/orders">
-              <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8" />
-                <path d="M3 15l3.5-2 3.5 2 3.5-2 3.5 2 3.5-2V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              </svg>
-              Order Management
-            </a>
-            <a href="/beneficiary">Beneficiary</a>
-            <a href="/announcement">Announcement</a>
-            <div className="section-title">TOOLS</div>
-            <a href="/activity">Activity Log</a>
-            <a href="/account-settings">Account Settings</a>
+
+          <nav className="admin-nav">
+            <div className="admin-section-title">GENERAL</div>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <Home size={18} /> Dashboard
+            </NavLink>
+            <NavLink
+              to="/inventory"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <Box size={18} /> Inventory
+            </NavLink>
+            <NavLink
+              to="/admin-product"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <Box size={18} /> Product
+            </NavLink>
+            <NavLink
+              to="/orders"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <ClipboardList size={18} /> Order Management
+            </NavLink>
+            <NavLink
+              to="/beneficiary"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <User size={18} /> Beneficiary
+            </NavLink>
+            <NavLink
+              to="/announcement"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <Megaphone size={18} /> Announcement
+            </NavLink>
+
+            <div className="admin-section-title">TOOLS</div>
+            <NavLink
+              to="/activity"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <Activity size={18} /> Activity Log
+            </NavLink>
+            <NavLink
+              to="/account-settings"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <Settings size={18} /> Account Settings
+            </NavLink>
           </nav>
         </aside>
 
         {/* Main Content */}
-        <main className="content">
-          <div className="page-title">
-            <h1>Segunda Mana</h1>
+        <main className="admin-settings-content">
+          <div className="admin-settings-page-title">
+            <h1>Order Management</h1>
           </div>
 
           {/* Toolbar */}
-          <div className="toolbar">
-            <div className="search">
+          <div className="admin-settings-toolbar">
+            <div className="admin-settings-search">
               <svg
                 width="16"
                 height="16"
@@ -116,13 +156,13 @@ function OrderManagement() {
             </div>
             <button className="btn">Filter</button>
             <button className="btn">Export</button>
-            <a href="/add-order" className="btn primary">
+            <NavLink to="/add-order" className="btn primary">
               + Add New Order
-            </a>
+            </NavLink>
           </div>
 
           {/* Orders Table */}
-          <div className="table">
+          <div className="admin-settings-table">
             <table>
               <thead>
                 <tr>
@@ -136,7 +176,6 @@ function OrderManagement() {
                 </tr>
               </thead>
               <tbody>
-                {/* Example Row */}
                 <tr>
                   <td>
                     <input type="checkbox" />
@@ -146,7 +185,9 @@ function OrderManagement() {
                       <div className="img"></div>
                       <div>
                         <div className="link">00231</div>
-                        <div style={{ fontSize: 12, color: "#475569" }}>Albibas Blue</div>
+                        <div style={{ fontSize: 12, color: "#475569" }}>
+                          Albibas Blue
+                        </div>
                       </div>
                     </div>
                   </td>
@@ -171,13 +212,12 @@ function OrderManagement() {
                     <span>🗑️</span>
                   </td>
                 </tr>
-                {/* Repeat rows as needed */}
               </tbody>
             </table>
           </div>
 
           {/* Pagination */}
-          <div className="pagination">
+          <div className="admin-settings-pagination">
             <div className="page">‹</div>
             <div className="page active">1</div>
             <div className="page">2</div>
@@ -186,8 +226,8 @@ function OrderManagement() {
           </div>
         </main>
       </div>
-    </div>
+    </>
   );
-}
+};
 
 export default OrderManagement;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../css/adminsidebar.css";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({

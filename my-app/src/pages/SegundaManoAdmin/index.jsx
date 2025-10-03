@@ -1,4 +1,5 @@
 import React from "react";
+import "../../css/adminsidebar.css";
 
 const AdminPortal = () => {
   return (

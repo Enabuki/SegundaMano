@@ -21,6 +21,7 @@ import AddOrder from "./pages/SegundaManoAdmin/add-order";
 import AddBeneficiary from "./pages/SegundaManoAdmin/add-beneficiary";
 import Announcement from "./pages/SegundaManoAdmin/announcement";
 import AccountSettings from "./pages/SegundaManoAdmin/account-settings";
+import AdminProduct from "./pages/SegundaManoAdmin/admin-product";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/add-beneficiary" element={<AddBeneficiary />} />
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/account-settings" element={<AccountSettings />} />
+        <Route path="/admin-product" element={<AdminProduct />} />
       </Routes>
     </Router>
   );

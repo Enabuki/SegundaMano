@@ -1,5 +1,6 @@
-import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import "../../css/styles.css";
+import "../../css/adminsidebar.css";
 import { Line, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -14,7 +15,6 @@ import {
 } from "chart.js";
 import {
   Home,
-  Package, // 📦 for Inventory
   Box,
   ClipboardList,
   User,
@@ -125,18 +125,8 @@ export default function Dashboard() {
       {/* Sidebar */}
       <aside className="admin-sidebar">
         <div className="admin-brand">
-          <div
-            className="admin-logo"
-            style={{
-              background: "#d32f2f",
-              width: "22px",
-              height: "22px",
-              borderRadius: "4px",
-            }}
-          ></div>
-          <span
-            style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}
-          >
+          <div className="admin-logo"></div>
+          <span className="admin-brand-text">
             <span>Segunda</span>
             <span>Mana</span>
           </span>
@@ -144,34 +134,40 @@ export default function Dashboard() {
 
         <nav className="admin-nav">
           <div className="admin-section-title">GENERAL</div>
-          <a className="active" href="dashboard.html">
-            <Home size={18} style={{ marginRight: "8px" }} /> Dashboard
-          </a>
-          <a href="inventory.html">
-            <Package size={18} style={{ marginRight: "8px" }} /> Inventory
-          </a>
-          <a href="product.html">
-            <Box size={18} style={{ marginRight: "8px" }} /> Product
-          </a>
-          <a href="orders.html">
-            <ClipboardList size={18} style={{ marginRight: "8px" }} /> Order
-            Management
-          </a>
-          <a href="beneficiary.html">
-            <User size={18} style={{ marginRight: "8px" }} /> Beneficiary
-          </a>
-          <a href="announcement.html">
-            <Megaphone size={18} style={{ marginRight: "8px" }} /> Announcement
-          </a>
+
+          <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
+            <Home size={18} /> Dashboard
+          </NavLink>
+
+          <NavLink to="/inventory" className={({ isActive }) => (isActive ? "active" : "")}>
+            <Box size={18} /> Inventory
+          </NavLink>
+
+          <NavLink to="/admin-product" className={({ isActive }) => (isActive ? "active" : "")}>
+            <Box size={18} /> Product
+          </NavLink>
+
+          <NavLink to="/orders" className={({ isActive }) => (isActive ? "active" : "")}>
+            <ClipboardList size={18} /> Order Management
+          </NavLink>
+
+          <NavLink to="/beneficiary" className={({ isActive }) => (isActive ? "active" : "")}>
+            <User size={18} /> Beneficiary
+          </NavLink>
+
+          <NavLink to="/announcement" className={({ isActive }) => (isActive ? "active" : "")}>
+            <Megaphone size={18} /> Announcement
+          </NavLink>
 
           <div className="admin-section-title">TOOLS</div>
-          <a href="activity.html">
-            <Activity size={18} style={{ marginRight: "8px" }} /> Activity Log
-          </a>
-          <a href="account-settings.html">
-            <Settings size={18} style={{ marginRight: "8px" }} /> Account
-            Settings
-          </a>
+
+          <NavLink to="/activity" className={({ isActive }) => (isActive ? "active" : "")}>
+            <Activity size={18} /> Activity Log
+          </NavLink>
+
+          <NavLink to="/account-settings" className={({ isActive }) => (isActive ? "active" : "")}>
+            <Settings size={18} /> Account Settings
+          </NavLink>
         </nav>
       </aside>
 
@@ -197,17 +193,10 @@ export default function Dashboard() {
               </div>
 
               <div className="admin-kpi-card">
-                <div
-                  className="admin-donut-wrap"
-                  style={{ textAlign: "center", width: "100%" }}
-                >
+                <div className="admin-donut-wrap" style={{ textAlign: "center", width: "100%" }}>
                   <div
                     className="admin-donut"
-                    style={{
-                      width: "160px",
-                      height: "160px",
-                      margin: "0 auto",
-                    }}
+                    style={{ width: "160px", height: "160px", margin: "0 auto" }}
                   >
                     <Doughnut
                       data={doughnutData}
